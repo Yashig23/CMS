@@ -1,3 +1,4 @@
+import "dotenv/config";
 import cors from "cors"
 import express from "express"
 import authRoutes from "./routes/auth_routes.js";
@@ -9,6 +10,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/api/auth", authRoutes)
+
+console.log("JWT secret exists:", !!process.env.JWT_secret);
 
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() })
